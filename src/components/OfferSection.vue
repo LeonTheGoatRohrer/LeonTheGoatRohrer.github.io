@@ -4,7 +4,7 @@
       <div class="offer__header reveal">
         <p class="section-label">Angebot &amp; Preis</p>
         <h2 class="section-title">
-          <span class="text-grad">ab&nbsp;695&nbsp;€</span> Startpreis — klar, fair, ohne Risiko.
+          <span class="text-grad">ab&nbsp;695&nbsp;€</span> exkl. Steuer — klar, fair, ohne Risiko.
         </h2>
         <p class="section-subtitle">
           Sie sehen <strong>zuerst die Vorschau Ihrer neuen Website</strong>.
@@ -28,7 +28,7 @@
             <span class="offer__price-amount">695</span>
             <span class="offer__price-currency">€</span>
           </div>
-          <p class="offer__price-sub">einmaliger Startpreis</p>
+          <p class="offer__price-sub">einmalig, exkl. Steuer</p>
 
           <ul class="offer__price-points">
             <li>
@@ -108,7 +108,7 @@
           </div>
 
           <p class="offer__disclaimer">
-            Der Startpreis gilt für einfache Unternehmenswebsites. Erweiterte Funktionen
+            Der Preis gilt für einfache Unternehmenswebsites. Erweiterte Funktionen
             wie Shops, Buchungssysteme oder Kundenbereiche kann ich separat anbieten.
           </p>
         </div>
@@ -143,9 +143,9 @@ const notIncluded = [
 ]
 
 const optionalExtensions = [
-  'Hosting & Wartung bei mir: ab €19/Monat — schnelles Hosting, SSL-Zertifikat, monatliche Updates, automatische Backups',
-  'Zusätzlicher Inhaltsbereich (über die 5 hinaus): €80',
-  'Einfaches Logo-Design: €100',
+  'Hosting & Wartung bei mir: ab €19/Monat exkl. Steuer — schnelles Hosting, SSL-Zertifikat, monatliche Updates, automatische Backups',
+  'Zusätzlicher Inhaltsbereich (über die 5 hinaus): €80 exkl. Steuer',
+  'Einfaches Logo-Design: €100 exkl. Steuer',
   'Online-Shop, Buchungssystem, Mehrsprachigkeit etc.: nach Aufwand, separate Offerte auf Anfrage',
 ]
 </script>

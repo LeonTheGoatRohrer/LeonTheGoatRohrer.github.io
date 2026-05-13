@@ -30,20 +30,22 @@
         :aria-expanded="menuOpen"
         aria-controls="mobile-menu"
         :aria-label="menuOpen ? 'Menü schließen' : 'Menü öffnen'"
-        @click="menuOpen = !menuOpen"
+        @click="toggleMenu"
       >
         <span></span><span></span><span></span>
       </button>
     </div>
 
     <div
+      v-show="menuOpen"
       id="mobile-menu"
       :class="['navbar__mobile', { open: menuOpen }]"
       role="dialog"
+      aria-modal="true"
       aria-label="Mobilmenü"
     >
-      <nav class="navbar__mobile-links" @click="menuOpen = false">
-        <a href="#nutzen" class="navbar__mobile-link">Vorteile</a>
+      <nav class="navbar__mobile-links" @click="onMobileNavClick">
+        <a ref="firstMobileLink" href="#nutzen" class="navbar__mobile-link">Vorteile</a>
         <a href="#referenzen" class="navbar__mobile-link">Referenzen</a>
         <a href="#angebot" class="navbar__mobile-link">Angebot &amp; Preis</a>
         <a href="#ablauf" class="navbar__mobile-link">Ablauf</a>
@@ -60,17 +62,51 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, nextTick, onMounted, onUnmounted } from 'vue'
 
 const isScrolled = ref(false)
 const menuOpen = ref(false)
+const firstMobileLink = ref(null)
 
 function onScroll() {
   isScrolled.value = window.scrollY > 24
 }
 
-onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
-onUnmounted(() => window.removeEventListener('scroll', onScroll))
+async function openMenu() {
+  menuOpen.value = true
+  await nextTick()
+  firstMobileLink.value?.focus()
+}
+
+function closeMenu() {
+  menuOpen.value = false
+}
+
+function toggleMenu() {
+  if (menuOpen.value) {
+    closeMenu()
+  } else {
+    openMenu()
+  }
+}
+
+function onMobileNavClick(event) {
+  if (event.target.closest('a')) closeMenu()
+}
+
+function onKeydown(event) {
+  if (event.key === 'Escape' && menuOpen.value) closeMenu()
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+  window.addEventListener('keydown', onKeydown)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+  window.removeEventListener('keydown', onKeydown)
+})
 </script>
 
 <style scoped>
@@ -307,4 +343,3 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   color: var(--color-accent);
 }
 </style>
-

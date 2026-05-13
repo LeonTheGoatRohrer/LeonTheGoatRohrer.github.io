@@ -19,7 +19,7 @@
         </div>
         <p class="footer__brand-tagline">
           Maßgeschneiderte Websites für lokale Unternehmen in Innsbruck &amp; Tirol —
-          mit klarem Startpreis und kostenloser Vorschau.
+          mit klarem Preis exkl. Steuer und kostenloser Vorschau.
         </p>
         <div class="footer__contact">
           <a href="tel:+4367762492999" class="footer__contact-link">
@@ -80,11 +80,18 @@
     </div>
 
     <!-- Legal modals -->
-    <div v-if="legalOpen" class="legal-backdrop" role="dialog" :aria-label="legalTitle" @click.self="legalOpen = null">
+    <div
+      v-if="legalOpen"
+      class="legal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="legal-modal-title"
+      @click.self="closeLegal"
+    >
       <div class="legal-modal">
         <div class="legal-modal__header">
-          <h2 class="legal-modal__title">{{ legalTitle }}</h2>
-          <button class="legal-modal__close" @click="legalOpen = null" aria-label="Schließen">
+          <h2 id="legal-modal-title" class="legal-modal__title">{{ legalTitle }}</h2>
+          <button ref="legalCloseButton" class="legal-modal__close" @click="closeLegal" aria-label="Schließen">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
@@ -128,7 +135,7 @@
               <li>Unternehmen (optional)</li>
               <li>E-Mail-Adresse oder Telefonnummer</li>
               <li>Nachrichteninhalt</li>
-              <li>technische Metadaten (z.&nbsp;B. Zeitpunkt der Absendung)</li>
+              <li>technische Metadaten (z.&nbsp;B. Zeitpunkt der Absendung, IP-Adresse, Browser- und Referrer-Informationen)</li>
             </ul>
             <p>Zweck: Bearbeitung Ihrer Anfrage. Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO (Anbahnung eines Vertragsverhältnisses) bzw. lit.&nbsp;a (Einwilligung durch Absenden des Formulars). Die Übermittlung in die USA stützt sich auf EU-Standardvertragsklauseln. Details: <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Formspree Privacy Policy</a>.</p>
             <p>Speicherdauer: bis zur abschließenden Bearbeitung Ihrer Anfrage, anschließend werden die Daten gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p>
@@ -136,8 +143,8 @@
             <h4>4. Direktkontakt (E-Mail, Telefon, WhatsApp)</h4>
             <p>Wenn Sie mich per E-Mail, Telefon oder WhatsApp kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage und für etwaige Anschlussfragen gespeichert. Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO. Bei Nutzung von WhatsApp (WhatsApp Ireland Ltd., bzw. Meta Platforms Ireland) gelten zusätzlich die dortigen Datenschutzbestimmungen. Bitte beachten Sie, dass eine Kontaktaufnahme über WhatsApp freiwillig erfolgt.</p>
 
-            <h4>5. Schriftarten (Google Fonts)</h4>
-            <p>Zur einheitlichen Darstellung werden die Schriftarten <em>Inter</em>, <em>Space Grotesk</em> und <em>JetBrains Mono</em> über Google Fonts (Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Irland) geladen. Dabei wird Ihre IP-Adresse an Google übertragen. Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse an einem ansprechenden Erscheinungsbild). Details: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Datenschutzerklärung</a>.</p>
+            <h4>5. Schriftarten</h4>
+            <p>Zur einheitlichen Darstellung werden die Schriftarten <em>Inter</em>, <em>Space Grotesk</em> und <em>JetBrains Mono</em> lokal von dieser Website geladen. Dabei findet keine Verbindung zu Google Fonts oder anderen externen Schriftanbieter-Servern statt.</p>
 
             <h4>6. Keine Cookies, kein Tracking, keine Analyse-Tools</h4>
             <p>Diese Website setzt <strong>keine Cookies</strong> und verwendet <strong>keinerlei Analyse-, Tracking- oder Werbe-Dienste</strong> (kein Google Analytics, kein Facebook Pixel etc.). Es findet keine Profilbildung statt.</p>
@@ -183,14 +190,64 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick, onMounted, onUnmounted, watch } from 'vue'
 
 const year = new Date().getFullYear()
 const legalOpen = ref(null)
+const legalCloseButton = ref(null)
 const legalTitle = computed(() =>
   legalOpen.value === 'impressum' ? 'Impressum' : 'Datenschutz'
 )
-function showLegal(page) { legalOpen.value = page }
+
+function isLegalPage(page) {
+  return page === 'impressum' || page === 'datenschutz'
+}
+
+function syncLegalFromHash() {
+  const page = window.location.hash.replace('#', '')
+  legalOpen.value = isLegalPage(page) ? page : null
+}
+
+function showLegal(page) {
+  if (!isLegalPage(page)) return
+  if (window.location.hash !== `#${page}`) {
+    window.history.pushState(null, '', `#${page}`)
+  }
+  legalOpen.value = page
+}
+
+function closeLegal() {
+  legalOpen.value = null
+  if (isLegalPage(window.location.hash.replace('#', ''))) {
+    window.history.pushState(null, '', `${window.location.pathname}${window.location.search}`)
+  }
+}
+
+function onKeydown(event) {
+  if (event.key === 'Escape' && legalOpen.value) {
+    closeLegal()
+  }
+}
+
+watch(legalOpen, async (page) => {
+  document.body.style.overflow = page ? 'hidden' : ''
+  if (page) {
+    await nextTick()
+    legalCloseButton.value?.focus()
+  }
+})
+
+onMounted(() => {
+  syncLegalFromHash()
+  window.addEventListener('hashchange', syncLegalFromHash)
+  window.addEventListener('keydown', onKeydown)
+})
+
+onUnmounted(() => {
+  document.body.style.overflow = ''
+  window.removeEventListener('hashchange', syncLegalFromHash)
+  window.removeEventListener('keydown', onKeydown)
+})
 </script>
 
 <style scoped>
@@ -543,4 +600,3 @@ function showLegal(page) { legalOpen.value = page }
   background: rgba(255,255,255,.06);
 }
 </style>
-

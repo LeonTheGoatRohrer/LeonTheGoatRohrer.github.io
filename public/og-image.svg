@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <pattern id="grid" width="72" height="72" patternUnits="userSpaceOnUse">
+      <path d="M72 0H0V72" fill="none" stroke="rgba(247,255,248,0.055)" stroke-width="1"/>
+    </pattern>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="28"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="#06110e"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="930" cy="190" r="150" fill="#ff9700" opacity="0.18" filter="url(#glow)"/>
+  <rect x="92" y="78" width="1016" height="474" rx="16" fill="rgba(16,28,23,0.78)" stroke="rgba(224,238,228,0.16)"/>
+  <circle cx="123" cy="118" r="7" fill="#22c55e"/>
+  <text x="142" y="126" fill="#a8b5ad" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" letter-spacing="2">WEBDESIGN · INNSBRUCK</text>
+  <text x="118" y="230" fill="#f7fff8" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="82" font-weight="700">Leon Rohrer</text>
+  <text x="118" y="324" fill="#f7fff8" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="72" font-weight="700">Websites für lokale</text>
+  <text x="118" y="404" fill="#ff9700" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="72" font-weight="700">Unternehmen in Tirol</text>
+  <text x="122" y="472" fill="#dce8df" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="600">Kostenlose Vorschau. Zahlung erst bei Gefallen.</text>
+  <rect x="118" y="500" width="330" height="62" rx="8" fill="#ff9700"/>
+  <text x="146" y="540" fill="#07120f" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="800">ab 695 € exkl. Steuer</text>
+</svg>

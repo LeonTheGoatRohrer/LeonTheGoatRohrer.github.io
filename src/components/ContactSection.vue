@@ -105,10 +105,12 @@
                   v-model="form.name"
                   type="text"
                   class="form-input"
+                  :class="{ 'form-input--invalid': touched && !form.name.trim() }"
                   placeholder="Ihr Name"
                   autocomplete="name"
                   required
                   aria-required="true"
+                  :aria-invalid="touched && !form.name.trim()"
                 />
               </div>
 
@@ -133,10 +135,12 @@
                   v-model="form.contact"
                   type="text"
                   class="form-input"
+                  :class="{ 'form-input--invalid': touched && !form.contact.trim() }"
                   placeholder="Wie kann ich Sie erreichen?"
                   autocomplete="email"
                   required
                   aria-required="true"
+                  :aria-invalid="touched && !form.contact.trim()"
                 />
               </div>
 
@@ -148,10 +152,12 @@
                   id="contact-message"
                   v-model="form.message"
                   class="form-input form-textarea"
+                  :class="{ 'form-input--invalid': touched && !form.message.trim() }"
                   placeholder="Was macht Ihr Unternehmen? Was für eine Website brauchen Sie?"
                   rows="5"
                   required
                   aria-required="true"
+                  :aria-invalid="touched && !form.message.trim()"
                 ></textarea>
               </div>
 
@@ -207,12 +213,21 @@ const form = reactive({ name: '', company: '', contact: '', message: '' })
 const submitting = ref(false)
 const submitted = ref(false)
 const errorMsg = ref('')
+const touched = ref(false)
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 async function handleSubmit() {
-  if (!form.name || !form.contact || !form.message) return
+  touched.value = true
+  submitted.value = false
+  errorMsg.value = ''
+
+  if (!form.name.trim() || !form.contact.trim() || !form.message.trim()) {
+    errorMsg.value = 'Bitte füllen Sie Name, Kontaktmöglichkeit und Nachricht aus.'
+    return
+  }
 
   submitting.value = true
-  errorMsg.value = ''
 
   // Falls die ID noch nicht eingetragen ist: nicht versenden, sondern hinweisen
   if (FORMSPREE_ID === 'DEINE_ID') {
@@ -223,20 +238,26 @@ async function handleSubmit() {
   }
 
   try {
+    const payload = {
+      name: form.name.trim(),
+      company: form.company.trim() || '–',
+      contact: form.contact.trim(),
+      message: form.message.trim(),
+      _subject: `Neue Anfrage von ${form.name.trim()}${form.company.trim() ? ' (' + form.company.trim() + ')' : ''}`,
+    }
+
+    if (emailPattern.test(form.contact.trim())) {
+      payload._replyto = form.contact.trim()
+      payload.email = form.contact.trim()
+    }
+
     const res = await fetch(FORMSPREE_ENDPOINT, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        name: form.name,
-        company: form.company || '–',
-        contact: form.contact,
-        message: form.message,
-        _subject: `Neue Anfrage von ${form.name}${form.company ? ' (' + form.company + ')' : ''}`,
-        _replyto: form.contact,
-      }),
+      body: JSON.stringify(payload),
     })
 
     if (!res.ok) {
@@ -247,6 +268,7 @@ async function handleSubmit() {
     }
 
     submitted.value = true
+    touched.value = false
     Object.assign(form, { name: '', company: '', contact: '', message: '' })
   } catch (err) {
     errorMsg.value =
@@ -547,10 +569,14 @@ async function handleSubmit() {
   box-shadow: 0 0 0 4px rgba(255, 151, 0, .14);
 }
 
+.form-input--invalid {
+  border-color: rgba(239, 68, 68, .8);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, .12);
+}
+
 .form-success {
   background: rgba(255, 151, 0, .14);
   color: var(--color-accent-2);
   border-radius: var(--radius-md);
 }
 </style>
-

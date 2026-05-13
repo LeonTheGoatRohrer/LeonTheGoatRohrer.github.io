@@ -26,7 +26,7 @@
         <div class="hero__offer" aria-label="Angebot">
           <div>
             <p class="hero__offer-label">Gratis Vorschau</p>
-            <p class="hero__offer-price">ab 695 € Startpreis</p>
+            <p class="hero__offer-price">ab 695 € exkl. Steuer</p>
           </div>
           <p class="hero__offer-note">Sie zahlen nur, wenn es Ihnen gefällt.</p>
         </div>
@@ -73,8 +73,8 @@
         <ul class="work__list">
           <li>
             <a href="https://leonthegoatrohrer.github.io/Krone-W-rgl/" target="_blank" rel="noopener noreferrer" class="work__item">
-              <span class="work__thumb work__thumb--1" aria-hidden="true">
-                <span class="work__thumb-shine"></span>
+              <span class="work__thumb" aria-hidden="true">
+                <img src="/references/wok-mobile.png" alt="" loading="eager" />
               </span>
               <span class="work__meta">
                 <span class="work__name">Krone Asia Kufstein</span>
@@ -89,8 +89,8 @@
           </li>
           <li>
             <a href="https://leonthegoatrohrer.github.io/Praxis-Lair/" target="_blank" rel="noopener noreferrer" class="work__item">
-              <span class="work__thumb work__thumb--2" aria-hidden="true">
-                <span class="work__thumb-shine"></span>
+              <span class="work__thumb" aria-hidden="true">
+                <img src="/references/therapiepraxis-mobile.png" alt="" loading="eager" />
               </span>
               <span class="work__meta">
                 <span class="work__name">Praxis Lair</span>
@@ -105,8 +105,8 @@
           </li>
           <li>
             <a href="https://leonthegoatrohrer.github.io/malermeister-schaetzer-website/" target="_blank" rel="noopener noreferrer" class="work__item">
-              <span class="work__thumb work__thumb--3" aria-hidden="true">
-                <span class="work__thumb-shine"></span>
+              <span class="work__thumb" aria-hidden="true">
+                <img src="/references/maler-mobile.png" alt="" loading="eager" />
               </span>
               <span class="work__meta">
                 <span class="work__name">Schätzer Malermeister</span>
@@ -181,7 +181,7 @@
 
 @media (min-width: 980px) {
   .hero__inner {
-    grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr);
+    grid-template-columns: minmax(0, 1.02fr) minmax(430px, .98fr);
     gap: 4rem;
   }
 }
@@ -325,7 +325,7 @@
 .hero__work {
   position: relative;
   width: 100%;
-  max-width: 480px;
+  max-width: 540px;
   justify-self: end;
   align-self: center;
   background: rgba(17, 23, 42, .55);
@@ -404,7 +404,7 @@
 .work__list {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.75rem;
   margin-bottom: 1.25rem;
   list-style: none;
   padding: 0;
@@ -412,10 +412,11 @@
 
 .work__item {
   display: grid;
-  grid-template-columns: 56px 1fr auto;
-  gap: 0.9rem;
+  grid-template-columns: 82px 1fr auto;
+  gap: 1rem;
   align-items: center;
-  padding: 0.7rem 0.85rem 0.7rem 0.7rem;
+  min-height: 128px;
+  padding: 0.85rem 0.9rem 0.85rem 0.85rem;
   background: rgba(255, 255, 255, .04);
   border: 1px solid rgba(255, 255, 255, .06);
   border-radius: var(--radius-md);
@@ -431,31 +432,40 @@
 
 .work__thumb {
   position: relative;
-  width: 56px;
-  aspect-ratio: 1 / 1;
-  border-radius: 10px;
+  width: 72px;
+  aspect-ratio: 9 / 16;
+  padding: 4px;
+  border-radius: 17px;
   overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.03)),
+    #07120f;
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow:
+    0 14px 26px rgba(0,0,0,.34),
+    inset 0 0 0 1px rgba(255,255,255,.05);
+  flex-shrink: 0;
 }
-.work__thumb-shine {
+
+.work__thumb::before {
+  content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,.22), transparent 45%);
-  pointer-events: none;
+  top: 4px;
+  left: 50%;
+  z-index: 2;
+  width: 22px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.38);
+  transform: translateX(-50%);
 }
-.work__thumb--1 {
-  background:
-    radial-gradient(120% 80% at 20% 20%, rgba(255,255,255,.18), transparent 60%),
-    linear-gradient(160deg, #F97316 0%, #B91C1C 100%);
-}
-.work__thumb--2 {
-  background:
-    radial-gradient(120% 80% at 20% 20%, rgba(255,255,255,.16), transparent 60%),
-    linear-gradient(160deg, #1E3A8A 0%, #0F172A 100%);
-}
-.work__thumb--3 {
-  background:
-    radial-gradient(120% 80% at 20% 20%, rgba(255,255,255,.16), transparent 60%),
-    linear-gradient(160deg, #B45309 0%, #292524 100%);
+
+.work__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 13px;
 }
 
 .work__meta {
@@ -623,4 +633,3 @@
   .hero__marquee-track { animation: none; }
 }
 </style>
-
