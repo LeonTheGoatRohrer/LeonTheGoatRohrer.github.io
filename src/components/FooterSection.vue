@@ -146,8 +146,9 @@
             <h4>5. Schriftarten</h4>
             <p>Zur einheitlichen Darstellung werden die Schriftarten <em>Inter</em>, <em>Space Grotesk</em> und <em>JetBrains Mono</em> lokal von dieser Website geladen. Dabei findet keine Verbindung zu Google Fonts oder anderen externen Schriftanbieter-Servern statt.</p>
 
-            <h4>6. Keine Cookies, kein Tracking, keine Analyse-Tools</h4>
-            <p>Diese Website setzt <strong>keine Cookies</strong> und verwendet <strong>keinerlei Analyse-, Tracking- oder Werbe-Dienste</strong> (kein Google Analytics, kein Facebook Pixel etc.). Es findet keine Profilbildung statt.</p>
+            <h4>6. Webanalyse mit Plausible Analytics</h4>
+            <p>Diese Website nutzt <strong>Plausible Analytics</strong> (Plausible Insights OÜ, Västriku tn 2, 50403 Tartu, Estland), um aggregiert zu verstehen, welche Seiten besucht werden und über welche Quellen Besucher auf die Website kommen.</p>
+            <p>Plausible verwendet keine Cookies, speichert keine IP-Adressen im Klartext und erstellt keine personenbezogenen Werbeprofile. Verarbeitet werden insbesondere Seitenaufrufe, Referrer, Gerätetyp, Browser, Betriebssystem, Land bzw. Region sowie Kampagnenparameter, sofern diese in der URL enthalten sind. Die Verarbeitung erfolgt auf Grundlage von Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse an Reichweitenmessung und Verbesserung der Website). Details: <a href="https://plausible.io/data-policy" target="_blank" rel="noopener noreferrer">Plausible Data Policy</a>.</p>
 
             <h4>7. Ihre Rechte</h4>
             <p>Sie haben jederzeit das Recht auf:</p>
