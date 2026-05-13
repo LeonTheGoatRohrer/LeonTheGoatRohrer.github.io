@@ -67,7 +67,7 @@
               <span class="offer__list-icon offer__list-icon--yes" aria-hidden="true">
                 <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
               </span>
-              Enthalten
+              Inkludiert
             </h3>
             <ul class="offer__list">
               <li v-for="item in included" :key="item" class="offer__list-item offer__list-item--yes">
@@ -82,11 +82,26 @@
               <span class="offer__list-icon offer__list-icon--no" aria-hidden="true">
                 <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
               </span>
-              Nicht enthalten
+              Nicht inkludiert
             </h3>
             <ul class="offer__list">
               <li v-for="item in notIncluded" :key="item" class="offer__list-item offer__list-item--no">
                 <svg class="offer__check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18L18 6M6 6l12 12"/></svg>
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="offer__list-block">
+            <h3 class="offer__list-title">
+              <span class="offer__list-icon offer__list-icon--optional" aria-hidden="true">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+              Optionale Erweiterungen
+            </h3>
+            <ul class="offer__list">
+              <li v-for="item in optionalExtensions" :key="item" class="offer__list-item offer__list-item--optional">
+                <svg class="offer__check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
                 {{ item }}
               </li>
             </ul>
@@ -111,20 +126,27 @@ const included = [
   'Einbindung Ihrer Texte, Bilder, Logo & Farben',
   'Kontaktbereich oder -formular',
   'Telefon, E-Mail, WhatsApp & Google Maps direkt verlinkt',
-  'Veröffentlichung Ihrer Website',
+  'Veröffentlichung auf Ihrem bestehenden Hosting (Zugangsdaten stellen Sie bereit)',
+  'Impressum, Datenschutzerklärung & DSGVO-konformer Cookie-Hinweis',
   'Grundlegende SEO-Optimierung',
-  'Eine Korrekturrunde',
+  'Kostenlose Vorschau + gemeinsame Verfeinerung bis zur Abnahme',
 ]
 
 const notIncluded = [
   'Domainkosten',
-  'Laufende Hostingkosten (extern)',
   'Online-Shop',
   'Buchungssysteme',
   'Login-Systeme & Kundenbereiche',
-  'Professionelle Fotos, Texte oder Logos',
-  'Unbegrenzte Änderungsrunden',
+  'Professionelle Fotos oder Logos',
   'Garantierte Google-Platzierungen',
+  'Größere Änderungen nach Veröffentlichung',
+]
+
+const optionalExtensions = [
+  'Hosting & Wartung bei mir: ab €19/Monat — schnelles Hosting, SSL-Zertifikat, monatliche Updates, automatische Backups',
+  'Zusätzlicher Inhaltsbereich (über die 5 hinaus): €80',
+  'Einfaches Logo-Design: €100',
+  'Online-Shop, Buchungssystem, Mehrsprachigkeit etc.: nach Aufwand, separate Offerte auf Anfrage',
 ]
 </script>
 
@@ -300,6 +322,7 @@ const notIncluded = [
 }
 .offer__list-icon--yes { background: #DCFCE7; color: #16A34A; }
 .offer__list-icon--no  { background: #FEE2E2; color: #DC2626; }
+.offer__list-icon--optional { background: #FEF3C7; color: #D97706; }
 
 .offer__list {
   display: flex;
@@ -315,12 +338,14 @@ const notIncluded = [
 }
 .offer__list-item--yes { color: var(--color-text); }
 .offer__list-item--no  { color: var(--color-muted); text-decoration: line-through; text-decoration-color: rgba(220,38,38,.25); }
+.offer__list-item--optional { color: var(--color-text); }
 .offer__check {
   flex-shrink: 0;
   margin-top: 2px;
 }
 .offer__list-item--yes .offer__check { color: #16A34A; }
 .offer__list-item--no  .offer__check { color: #DC2626; }
+.offer__list-item--optional .offer__check { color: #D97706; }
 
 .offer__disclaimer {
   font-size: 0.8rem;
@@ -432,6 +457,11 @@ const notIncluded = [
   color: var(--color-muted);
 }
 
+.offer__list-icon--optional {
+  background: rgba(255, 151, 0, .14);
+  color: var(--color-accent);
+}
+
 .offer__list-item--no {
   text-decoration-color: rgba(117, 131, 123, .45);
 }
@@ -442,6 +472,10 @@ const notIncluded = [
 
 .offer__list-item--no .offer__check {
   color: var(--color-muted);
+}
+
+.offer__list-item--optional .offer__check {
+  color: var(--color-accent);
 }
 </style>
 

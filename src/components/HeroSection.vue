@@ -59,39 +59,75 @@
         </ol>
       </div>
 
-      <div class="hero__visual" aria-hidden="true">
-        <div class="poster-preview">
-          <div class="poster-preview__top">
-            <span></span><span></span><span></span>
-          </div>
-          <div class="poster-preview__hero">
-            <div class="poster-preview__copy">
-              <span class="line line--short"></span>
-              <span class="line line--title"></span>
-              <span class="line line--title line--orange"></span>
-              <span class="line line--body"></span>
-              <span class="line line--body line--small"></span>
-            </div>
-            <div class="poster-preview__block"></div>
-          </div>
-          <div class="poster-preview__bars">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div class="poster-preview__cards">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
+      <aside class="hero__work" aria-label="Aktuelle Arbeiten">
+        <header class="work__header">
+          <span class="work__eyebrow">
+            <span class="work__dot"></span>
+            Live im Einsatz
+          </span>
+          <span class="work__index">03 · 2026</span>
+        </header>
 
-        <div class="hero__proof">
-          <p>Mobile-ready</p>
-          <strong>100</strong>
-          <span>Performance-Ziel</span>
-        </div>
-      </div>
+        <h2 class="work__title">Aktuelle Arbeiten</h2>
+
+        <ul class="work__list">
+          <li>
+            <a href="https://leonthegoatrohrer.github.io/Krone-W-rgl/" target="_blank" rel="noopener noreferrer" class="work__item">
+              <span class="work__thumb work__thumb--1" aria-hidden="true">
+                <span class="work__thumb-shine"></span>
+              </span>
+              <span class="work__meta">
+                <span class="work__name">Krone Asia Kufstein</span>
+                <span class="work__cat">Gastronomie</span>
+              </span>
+              <span class="work__arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                  <path d="M7 17L17 7M9 7h8v8"/>
+                </svg>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="https://leonthegoatrohrer.github.io/Praxis-Lair/" target="_blank" rel="noopener noreferrer" class="work__item">
+              <span class="work__thumb work__thumb--2" aria-hidden="true">
+                <span class="work__thumb-shine"></span>
+              </span>
+              <span class="work__meta">
+                <span class="work__name">Praxis Lair</span>
+                <span class="work__cat">Psychotherapie</span>
+              </span>
+              <span class="work__arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                  <path d="M7 17L17 7M9 7h8v8"/>
+                </svg>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="https://leonthegoatrohrer.github.io/malermeister-schaetzer-website/" target="_blank" rel="noopener noreferrer" class="work__item">
+              <span class="work__thumb work__thumb--3" aria-hidden="true">
+                <span class="work__thumb-shine"></span>
+              </span>
+              <span class="work__meta">
+                <span class="work__name">Schätzer Malermeister</span>
+                <span class="work__cat">Handwerk</span>
+              </span>
+              <span class="work__arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                  <path d="M7 17L17 7M9 7h8v8"/>
+                </svg>
+              </span>
+            </a>
+          </li>
+        </ul>
+
+        <a href="#referenzen" class="work__all">
+          Alle Referenzen ansehen
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path d="M5 12h14M13 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </aside>
     </div>
 
     <div class="hero__marquee" aria-hidden="true">
@@ -285,134 +321,204 @@
   font-weight: 800;
 }
 
-.hero__visual {
+/* ===================== HERO WORK CARD ===================== */
+.hero__work {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 420px;
-}
-
-.poster-preview {
-  width: min(100%, 480px);
-  border: 1px solid var(--color-border);
+  width: 100%;
+  max-width: 480px;
+  justify-self: end;
+  align-self: center;
+  background: rgba(17, 23, 42, .55);
+  border: 1px solid rgba(255, 255, 255, .08);
   border-radius: var(--radius-lg);
-  background: #0b1813;
-  box-shadow: var(--shadow-lg);
+  padding: 1.5rem 1.5rem 1.25rem;
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, .45),
+    inset 0 1px 0 rgba(255, 255, 255, .06);
   overflow: hidden;
-  transform: rotate(-1.5deg);
+  isolation: isolate;
+  animation: workRise .8s cubic-bezier(.2,.7,.2,1) both;
+}
+.hero__work::before {
+  content: '';
+  position: absolute;
+  inset: -40% -10% auto auto;
+  width: 320px; height: 320px;
+  background: radial-gradient(closest-side, rgba(255,151,0,.18), transparent 70%);
+  filter: blur(20px);
+  z-index: -1;
+  pointer-events: none;
+}
+@keyframes workRise {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.poster-preview__top {
+.work__header {
   display: flex;
-  gap: 5px;
-  padding: 0.75rem;
-  border-bottom: 1px solid var(--color-border-soft);
-  background: #101c17;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.work__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.75);
+}
+.work__dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #22C55E;
+  box-shadow: 0 0 0 4px rgba(34,197,94,.18);
+  animation: workPulse 2.4s ease-in-out infinite;
+}
+@keyframes workPulse {
+  0%,100% { box-shadow: 0 0 0 4px rgba(34,197,94,.18); }
+  50%     { box-shadow: 0 0 0 7px rgba(34,197,94,0); }
+}
+.work__index {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.4);
+  letter-spacing: 0.04em;
 }
 
-.poster-preview__top span {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgba(247, 255, 248, 0.35);
+.work__title {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 1.25rem;
+  line-height: 1.05;
 }
 
-.poster-preview__hero {
-  display: grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap: 1.2rem;
-  padding: 1.3rem;
-  min-height: 280px;
-}
-
-.poster-preview__copy {
+.work__list {
   display: flex;
   flex-direction: column;
-  gap: 0.62rem;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+  list-style: none;
+  padding: 0;
 }
 
-.line {
-  display: block;
-  border-radius: 2px;
-  background: rgba(247, 255, 248, 0.18);
-}
-
-.line--short { width: 46%; height: 10px; background: var(--color-accent); }
-.line--title { width: 96%; height: 30px; background: var(--color-text); }
-.line--orange { width: 72%; background: var(--color-accent); }
-.line--body { width: 82%; height: 8px; }
-.line--small { width: 56%; }
-
-.poster-preview__block {
-  align-self: stretch;
-  min-height: 220px;
+.work__item {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 0.9rem;
+  align-items: center;
+  padding: 0.7rem 0.85rem 0.7rem 0.7rem;
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(255, 255, 255, .06);
   border-radius: var(--radius-md);
-  background:
-    linear-gradient(180deg, rgba(255, 151, 0, 0.92) 0 30%, transparent 30% 100%),
-    linear-gradient(90deg, rgba(247, 255, 248, 0.14) 0 45%, transparent 45% 100%),
-    #1b2b23;
+  color: #fff;
+  text-decoration: none;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+.work__item:hover {
+  background: rgba(255, 255, 255, .07);
+  border-color: rgba(255, 179, 66, .35);
+  transform: translateY(-1px);
 }
 
-.poster-preview__bars {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.65rem;
-  padding: 0 1.3rem 1.3rem;
+.work__thumb {
+  position: relative;
+  width: 56px;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
 }
-
-.poster-preview__bars span {
-  height: 52px;
-  border-radius: var(--radius-sm);
-  background:
-    linear-gradient(180deg, rgba(247, 255, 248, 0.32) 0 8px, transparent 8px),
-    linear-gradient(90deg, rgba(255, 151, 0, 0.58) 0 58%, rgba(247, 255, 248, 0.14) 58%),
-    #15241d;
-}
-
-.poster-preview__cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.65rem;
-  padding: 0 1.3rem 1.3rem;
-}
-
-.poster-preview__cards span {
-  height: 78px;
-  border: 1px solid var(--color-border-soft);
-  border-radius: var(--radius-sm);
-  background:
-    linear-gradient(180deg, rgba(255, 151, 0, 0.85) 0 34%, transparent 34%),
-    #101c17;
-}
-
-.hero__proof {
+.work__thumb-shine {
   position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 154px;
-  padding: 1rem;
-  background: var(--color-accent);
-  color: #07120f;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-accent);
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.22), transparent 45%);
+  pointer-events: none;
+}
+.work__thumb--1 {
+  background:
+    radial-gradient(120% 80% at 20% 20%, rgba(255,255,255,.18), transparent 60%),
+    linear-gradient(160deg, #F97316 0%, #B91C1C 100%);
+}
+.work__thumb--2 {
+  background:
+    radial-gradient(120% 80% at 20% 20%, rgba(255,255,255,.16), transparent 60%),
+    linear-gradient(160deg, #1E3A8A 0%, #0F172A 100%);
+}
+.work__thumb--3 {
+  background:
+    radial-gradient(120% 80% at 20% 20%, rgba(255,255,255,.16), transparent 60%),
+    linear-gradient(160deg, #B45309 0%, #292524 100%);
 }
 
-.hero__proof p,
-.hero__proof span {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  line-height: 1.2;
+.work__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
-
-.hero__proof strong {
-  display: block;
+.work__name {
   font-family: var(--font-display);
-  font-size: 3.1rem;
-  line-height: 0.95;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+.work__cat {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.55);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.work__arrow {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: rgba(255,255,255,.5);
+  background: rgba(255,255,255,.04);
+  transition: color var(--transition), background var(--transition), transform var(--transition);
+}
+.work__item:hover .work__arrow {
+  color: #FFB342;
+  background: rgba(255,179,66,.12);
+  transform: translate(2px, -2px);
+}
+
+.work__all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, .06);
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  transition: color var(--transition);
+}
+.work__all:hover { color: #FFB342; }
+.work__all svg { transition: transform var(--transition); }
+.work__all:hover svg { transform: translateX(3px); }
 
 .hero__marquee {
   margin-top: 3rem;
@@ -490,14 +596,8 @@
 }
 
 @media (max-width: 979px) {
-  .hero__visual {
-    order: -1;
-    min-height: 320px;
-  }
-
-  .poster-preview {
-    width: min(100%, 420px);
-  }
+  .hero__work { display: none; }
+  .hero__inner { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 560px) {
@@ -506,73 +606,16 @@
   }
 
   .hero__content {
-    width: min(330px, 100%);
-    max-width: 330px;
+    width: 100%;
+    max-width: 100%;
   }
 
   .hero__headline {
-    font-size: 3.8rem;
-  }
-
-  .hero__sub,
-  .hero__offer,
-  .hero__ctas,
-  .hero__steps {
-    width: min(330px, 100%);
-    max-width: 330px;
+    font-size: 3.4rem;
   }
 
   .hero__ctas .btn {
     width: 100%;
-  }
-
-  .hero__visual {
-    display: grid;
-    justify-items: center;
-    gap: 0.8rem;
-    min-height: 290px;
-    overflow: hidden;
-  }
-
-  .poster-preview {
-    width: min(100%, 330px);
-    transform: none;
-  }
-
-  .poster-preview__hero {
-    grid-template-columns: 1fr;
-    min-height: 210px;
-  }
-
-  .poster-preview__block {
-    min-height: 92px;
-  }
-
-  .poster-preview__bars {
-    display: none;
-  }
-
-  .poster-preview__cards {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .poster-preview__cards span:last-child {
-    display: none;
-  }
-
-  .hero__proof {
-    position: static;
-    width: min(100%, 330px);
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    column-gap: 0.9rem;
-    padding: 0.75rem 0.9rem;
-  }
-
-  .hero__proof strong {
-    grid-row: span 2;
-    font-size: 2.4rem;
   }
 }
 

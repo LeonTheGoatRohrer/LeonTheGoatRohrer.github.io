@@ -2,21 +2,12 @@
   <header :class="['navbar', { scrolled: isScrolled, 'menu-open': menuOpen }]" role="banner">
     <div class="container navbar__inner">
       <a href="#start" class="navbar__logo" aria-label="Leon Rohrer Webdesign – zur Startseite">
-        <span class="navbar__logo-mark" aria-hidden="true">
-          <svg viewBox="0 0 28 28" width="22" height="22" aria-hidden="true">
-            <defs>
-              <linearGradient id="lr-grad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#F97316"/>
-                <stop offset="100%" stop-color="#FFB342"/>
-              </linearGradient>
-            </defs>
-            <rect x="2" y="2" width="24" height="24" rx="7" fill="url(#lr-grad)"/>
-            <path d="M9 8v12h7M16 8h3l-3 6h3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
+        <span class="navbar__logo-name">
+          Leon Rohrer<span class="navbar__logo-period" aria-hidden="true">.</span>
         </span>
-        <span class="navbar__logo-text">
-          <span class="navbar__logo-name">Leon Rohrer</span>
-          <span class="navbar__logo-sub">Webdesign · Innsbruck</span>
+        <span class="navbar__logo-sub">
+          <span class="navbar__logo-dot" aria-hidden="true"></span>
+          Webdesign · Innsbruck
         </span>
       </a>
 
@@ -107,37 +98,52 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   height: 76px;
 }
 
-/* Logo */
+/* Logo — refined wordmark */
 .navbar__logo {
   display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1;
+  text-decoration: none;
   transition: opacity .2s;
 }
-.navbar__logo:hover { opacity: .85; }
-.navbar__logo-mark {
-  width: 36px; height: 36px;
-  border-radius: var(--radius-lg);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 14px -6px rgba(249,115,22,.4);
-}
-.navbar__logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.navbar__logo:hover { opacity: .82; }
+.navbar__logo:hover .navbar__logo-period { transform: translateY(-1px); }
+
 .navbar__logo-name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0;
+  font-size: 1.1rem;
+  letter-spacing: -0.025em;
   color: var(--color-text);
+  line-height: 1;
+}
+.navbar__logo-period {
+  display: inline-block;
+  color: var(--color-accent);
+  transition: transform .25s cubic-bezier(.2,.7,.2,1);
 }
 .navbar__logo-sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.62rem;
   font-weight: 500;
   color: var(--color-muted);
-  letter-spacing: 0;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+.navbar__logo-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #22C55E;
+  box-shadow: 0 0 0 3px rgba(34,197,94,.18);
+  animation: navDotPulse 2.4s ease-in-out infinite;
+}
+@keyframes navDotPulse {
+  0%,100% { box-shadow: 0 0 0 3px rgba(34,197,94,.18); }
+  50%     { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
 }
 
 /* Desktop links */
@@ -256,17 +262,15 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 .navbar__mobile {
   background: var(--color-bg);
 }
-.navbar__logo-mark {
-  border-radius: var(--radius-md);
-  box-shadow: 0 0 0 1px rgba(255, 151, 0, .28), var(--shadow-accent);
-}
-.navbar__logo-name,
-.navbar__logo-sub,
-.navbar__link {
-  letter-spacing: 0;
+.navbar__logo-name {
+  letter-spacing: -0.025em;
 }
 .navbar__logo-sub {
-  font-weight: 800;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.navbar__link {
+  letter-spacing: 0;
 }
 .navbar__link {
   font-family: var(--font-mono);

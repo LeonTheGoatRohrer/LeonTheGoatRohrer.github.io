@@ -9,30 +9,24 @@
       <!-- Brand -->
       <div class="footer__brand">
         <div class="footer__brand-row">
-          <span class="footer__mark" aria-hidden="true">
-            <svg viewBox="0 0 28 28" width="22" height="22" aria-hidden="true">
-              <defs>
-                <linearGradient id="lr-grad-footer" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#F97316"/>
-                  <stop offset="100%" stop-color="#FFB342"/>
-                </linearGradient>
-              </defs>
-              <rect x="2" y="2" width="24" height="24" rx="7" fill="url(#lr-grad-footer)"/>
-              <path d="M9 8v12h7M16 8h3l-3 6h3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            </svg>
+          <p class="footer__brand-name">
+            Leon Rohrer<span class="footer__brand-period" aria-hidden="true">.</span>
+          </p>
+          <span class="footer__brand-sub">
+            <span class="footer__brand-dot" aria-hidden="true"></span>
+            Webdesign · Innsbruck
           </span>
-          <p class="footer__brand-name">Leon Rohrer <span>Webdesign</span></p>
         </div>
         <p class="footer__brand-tagline">
           Maßgeschneiderte Websites für lokale Unternehmen in Innsbruck &amp; Tirol —
           mit klarem Startpreis und kostenloser Vorschau.
         </p>
         <div class="footer__contact">
-          <a href="tel:+43XXXXXXXXX" class="footer__contact-link">
+          <a href="tel:+4367762492999" class="footer__contact-link">
             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498A1 1 0 0121 15.72V19a2 2 0 01-2 2h-1C9.163 21 3 14.837 3 7V5z"/>
             </svg>
-            +43 XXX XXXXXXX
+            +43 677 6249 2999
           </a>
           <a href="mailto:kontakt@leonrohrer.at" class="footer__contact-link">
             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
@@ -96,26 +90,79 @@
         </div>
         <div class="legal-modal__body">
           <template v-if="legalOpen === 'impressum'">
-            <div class="legal-notice">
-              Dieser Text ist ein Platzhalter und muss noch durch vollständige
-              rechtliche Angaben ersetzt werden.
-            </div>
-            <h3>Angaben gemäß § 5 ECG</h3>
+            <h3>Angaben gemäß § 5 ECG / § 25 MedienG</h3>
             <p><strong>Name:</strong> Leon Rohrer</p>
-            <p><strong>Adresse:</strong> [Straße, PLZ, Ort] — bitte ergänzen</p>
+            <p><strong>Adresse:</strong> Ulmenstraße 3, 6063 Rum, Tirol, Österreich</p>
             <p><strong>E-Mail:</strong> kontakt@leonrohrer.at</p>
-            <p><strong>Telefon:</strong> +43 XXX XXXXXXX — bitte ergänzen</p>
-            <p style="margin-top:1rem"><em>Hinweis: Dieses Impressum ist unvollständig und muss vor Veröffentlichung durch einen vollständigen, rechtskonformen Text ersetzt werden.</em></p>
+            <p><strong>Telefon:</strong> +43 677 6249 2999</p>
+            <p style="margin-top:1rem"><strong>Inhalt &amp; Zweck:</strong> Persönliche Website zur Präsentation freier Webdesign-Projekte.</p>
           </template>
 
           <template v-if="legalOpen === 'datenschutz'">
-            <div class="legal-notice">
-              Dieser Text ist ein Platzhalter und muss noch durch eine vollständige
-              Datenschutzerklärung ersetzt werden.
-            </div>
             <h3>Datenschutzerklärung</h3>
-            <p>Diese Website verarbeitet personenbezogene Daten gemäß der Datenschutz-Grundverordnung (DSGVO).</p>
-            <p style="margin-top:1rem"><em>Hinweis: Diese Datenschutzerklärung ist unvollständig. Bitte eine DSGVO-konforme Erklärung durch einen Rechtsanwalt oder einen geprüften Generator erstellen lassen.</em></p>
+            <p>Der Schutz Ihrer personenbezogenen Daten ist mir ein wichtiges Anliegen. Diese Erklärung informiert Sie gemäß der Datenschutz-Grundverordnung (DSGVO) sowie dem österreichischen Datenschutzgesetz (DSG) darüber, welche Daten beim Besuch dieser Website verarbeitet werden.</p>
+
+            <h4>1. Verantwortlicher</h4>
+            <p>
+              Leon Rohrer<br />
+              Ulmenstraße 3, 6063 Rum, Tirol, Österreich<br />
+              E-Mail: kontakt@leonrohrer.at<br />
+              Telefon: +43 677 6249 2999
+            </p>
+
+            <h4>2. Zugriffsdaten &amp; Hosting (GitHub Pages)</h4>
+            <p>Diese Website wird über <strong>GitHub Pages</strong> (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA) ausgeliefert. Bei jedem Aufruf werden technisch notwendige Zugriffsdaten in Server-Logs verarbeitet, insbesondere:</p>
+            <ul style="padding-left:1.25rem;list-style:disc">
+              <li>anonymisierte IP-Adresse</li>
+              <li>Datum und Uhrzeit des Zugriffs</li>
+              <li>aufgerufene URL und übertragene Datenmenge</li>
+              <li>Browser, Betriebssystem und Referrer</li>
+            </ul>
+            <p>Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse an einer sicheren und stabilen Bereitstellung der Website). Die Übermittlung in die USA erfolgt auf Basis des EU-US Data Privacy Framework, an dem GitHub teilnimmt. Details: <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub Privacy Statement</a>.</p>
+
+            <h4>3. Kontaktformular (Formspree)</h4>
+            <p>Wenn Sie das Kontaktformular nutzen, werden die von Ihnen eingegebenen Daten (Name, optional Unternehmen, E-Mail oder Telefon, Nachricht) über den Dienst <strong>Formspree</strong> (Formspree Inc., 1411 Garrison Way, Petaluma, CA 94954, USA) an meine E-Mail-Adresse weitergeleitet.</p>
+            <p>Verarbeitete Daten:</p>
+            <ul style="padding-left:1.25rem;list-style:disc">
+              <li>Name</li>
+              <li>Unternehmen (optional)</li>
+              <li>E-Mail-Adresse oder Telefonnummer</li>
+              <li>Nachrichteninhalt</li>
+              <li>technische Metadaten (z.&nbsp;B. Zeitpunkt der Absendung)</li>
+            </ul>
+            <p>Zweck: Bearbeitung Ihrer Anfrage. Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO (Anbahnung eines Vertragsverhältnisses) bzw. lit.&nbsp;a (Einwilligung durch Absenden des Formulars). Die Übermittlung in die USA stützt sich auf EU-Standardvertragsklauseln. Details: <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Formspree Privacy Policy</a>.</p>
+            <p>Speicherdauer: bis zur abschließenden Bearbeitung Ihrer Anfrage, anschließend werden die Daten gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p>
+
+            <h4>4. Direktkontakt (E-Mail, Telefon, WhatsApp)</h4>
+            <p>Wenn Sie mich per E-Mail, Telefon oder WhatsApp kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage und für etwaige Anschlussfragen gespeichert. Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO. Bei Nutzung von WhatsApp (WhatsApp Ireland Ltd., bzw. Meta Platforms Ireland) gelten zusätzlich die dortigen Datenschutzbestimmungen. Bitte beachten Sie, dass eine Kontaktaufnahme über WhatsApp freiwillig erfolgt.</p>
+
+            <h4>5. Schriftarten (Google Fonts)</h4>
+            <p>Zur einheitlichen Darstellung werden die Schriftarten <em>Inter</em>, <em>Space Grotesk</em> und <em>JetBrains Mono</em> über Google Fonts (Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Irland) geladen. Dabei wird Ihre IP-Adresse an Google übertragen. Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse an einem ansprechenden Erscheinungsbild). Details: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Datenschutzerklärung</a>.</p>
+
+            <h4>6. Keine Cookies, kein Tracking, keine Analyse-Tools</h4>
+            <p>Diese Website setzt <strong>keine Cookies</strong> und verwendet <strong>keinerlei Analyse-, Tracking- oder Werbe-Dienste</strong> (kein Google Analytics, kein Facebook Pixel etc.). Es findet keine Profilbildung statt.</p>
+
+            <h4>7. Ihre Rechte</h4>
+            <p>Sie haben jederzeit das Recht auf:</p>
+            <ul style="padding-left:1.25rem;list-style:disc">
+              <li>Auskunft über Ihre verarbeiteten Daten (Art.&nbsp;15 DSGVO)</li>
+              <li>Berichtigung unrichtiger Daten (Art.&nbsp;16 DSGVO)</li>
+              <li>Löschung („Recht auf Vergessenwerden", Art.&nbsp;17 DSGVO)</li>
+              <li>Einschränkung der Verarbeitung (Art.&nbsp;18 DSGVO)</li>
+              <li>Datenübertragbarkeit (Art.&nbsp;20 DSGVO)</li>
+              <li>Widerspruch gegen die Verarbeitung (Art.&nbsp;21 DSGVO)</li>
+              <li>Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft</li>
+            </ul>
+            <p>Für die Ausübung Ihrer Rechte genügt eine formlose Nachricht an <strong>kontakt@leonrohrer.at</strong>.</p>
+
+            <h4>8. Beschwerderecht</h4>
+            <p>Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Die zuständige Behörde in Österreich ist:<br />
+            <strong>Österreichische Datenschutzbehörde</strong>, Barichgasse 40–42, 1030 Wien, <a href="https://www.dsb.gv.at" target="_blank" rel="noopener noreferrer">dsb.gv.at</a></p>
+
+            <h4>9. Änderungen dieser Erklärung</h4>
+            <p>Ich behalte mir vor, diese Datenschutzerklärung gelegentlich anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder Änderungen meiner Leistungen widerspiegelt. Für den erneuten Besuch der Website gilt dann die jeweils neue Datenschutzerklärung.</p>
+
+            <p style="margin-top:1.25rem;font-size:.8rem;color:var(--color-muted)">Stand: Mai 2026</p>
           </template>
         </div>
       </div>
@@ -174,34 +221,43 @@ function showLegal(page) { legalOpen.value = page }
   .footer__inner { grid-template-columns: 1.5fr 1fr 1fr; gap: 2.5rem; }
 }
 
-/* Brand */
+/* Brand — wordmark */
 .footer__brand-row {
   display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  margin-bottom: 1rem;
-}
-.footer__mark {
-  width: 36px; height: 36px;
-  border-radius: var(--radius-lg);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 14px -4px rgba(249,115,22,.5);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-bottom: 1.1rem;
+  line-height: 1;
 }
 .footer__brand-name {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  letter-spacing: 0;
+  letter-spacing: -0.025em;
   color: #fff;
+  line-height: 1;
 }
-.footer__brand-name span {
-  background: var(--grad-accent);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+.footer__brand-period {
+  color: var(--color-accent);
+}
+.footer__brand-sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.55);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.footer__brand-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #22C55E;
+  box-shadow: 0 0 0 3px rgba(34,197,94,.18);
+  animation: navDotPulse 2.4s ease-in-out infinite;
 }
 .footer__brand-tagline {
   font-size: 0.92rem;
@@ -383,8 +439,34 @@ function showLegal(page) { legalOpen.value = page }
   line-height: 1.7;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
+.legal-modal__body h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0.25rem 0 0.5rem;
+}
+.legal-modal__body h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 1.1rem 0 0.25rem;
+  color: var(--color-text);
+}
+.legal-modal__body p { font-size: 0.9rem; line-height: 1.65; }
+.legal-modal__body ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.legal-modal__body a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.legal-modal__body a:hover { color: var(--color-accent-h); }
 .legal-notice {
   background: #FEF3C7;
   color: #92400E;
@@ -408,12 +490,7 @@ function showLegal(page) { legalOpen.value = page }
   display: none;
 }
 
-.footer__mark {
-  border-radius: var(--radius-md);
-}
-
 .footer__brand-name,
-.footer__brand-name span,
 .footer__nav-heading,
 .footer__cta-eyebrow,
 .footer__cta-text,
@@ -422,11 +499,6 @@ function showLegal(page) { legalOpen.value = page }
   letter-spacing: 0;
 }
 
-.footer__brand-name span {
-  color: var(--color-accent);
-  -webkit-text-fill-color: currentColor;
-  background: none;
-}
 
 .footer__cta {
   background: var(--color-accent);

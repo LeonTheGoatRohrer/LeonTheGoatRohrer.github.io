@@ -14,8 +14,8 @@
           :alt="`Vorschau der Website ${reference.name}`"
           class="ref-card__img"
           loading="lazy"
-          width="800"
-          height="500"
+          width="1456"
+          height="824"
           @error="handleImgError"
         />
 
@@ -111,7 +111,7 @@ const themeIndex = computed(() => ((props.index - 1) % 3) + 1)
 .ref-card__img-wrap {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   background: linear-gradient(135deg, #F5F7FB, #E8ECF4);
 }
 .ref-card__img-wrap--1 { background: linear-gradient(135deg, #FFEDD5, #FED7AA); }

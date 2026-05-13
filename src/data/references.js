@@ -1,10 +1,4 @@
-﻿// Bilddateien im Ordner public/references/ ablegen:
-//   public/references/krone-desktop.jpg    (Desktop-Screenshot ~1200x750px)
-//   public/references/krone-mobile.jpg     (optional, mobiler Screenshot)
-//   public/references/praxis-desktop.jpg
-//   public/references/praxis-mobile.jpg
-//   public/references/maler-desktop.jpg
-//   public/references/maler-mobile.jpg
+// Bilddateien liegen im Ordner public/references/.
 // Vite stellt public/-Dateien direkt unter "/" bereit.
 
 export const references = [
@@ -20,16 +14,6 @@ export const references = [
   },
   {
     id: 2,
-    name: 'Praxis Lair',
-    category: 'Psychotherapie & Klinische Psychologie',
-    description: 'Seriöse Praxis-Website für Psychotherapie und Klinische Psychologie mit ruhigem Design, klaren Schwerpunkten, Standorten und Kontaktmöglichkeit.',
-    url: 'https://leonthegoatrohrer.github.io/Praxis-Lair/',
-    desktopImage: '/references/therapiepraxis-desktop.png',
-    mobileImage: '',
-    tags: ['Responsive', 'Praxis', 'Seriöses Design'],
-  },
-  {
-    id: 3,
     name: 'Malermeisterbetrieb Schätzer',
     category: 'Handwerk / Malerbetrieb',
     description: 'Professionelle Website für einen Malermeisterbetrieb mit Leistungsübersicht, regionalem Fokus auf Innsbruck/Tirol und klarer Kontaktführung.',
@@ -37,5 +21,15 @@ export const references = [
     desktopImage: '/references/maler-desktop.png',
     mobileImage: '',
     tags: ['Responsive', 'Handwerk', 'Regionale Sichtbarkeit'],
+  },
+  {
+    id: 3,
+    name: 'Praxis Lair',
+    category: 'Psychotherapie & Klinische Psychologie',
+    description: 'Seriöse Praxis-Website für Psychotherapie und Klinische Psychologie mit ruhigem Design, klaren Schwerpunkten, Standorten und Kontaktmöglichkeit.',
+    url: 'https://leonthegoatrohrer.github.io/Praxis-Lair/',
+    desktopImage: '/references/therapiepraxis-desktop.png',
+    mobileImage: '',
+    tags: ['Responsive', 'Praxis', 'Seriöses Design'],
   },
 ]

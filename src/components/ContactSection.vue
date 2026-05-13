@@ -24,7 +24,7 @@
 
           <div class="contact__buttons">
             <a
-              href="https://wa.me/43XXXXXXXXX?text=Hallo%20Leon%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Website%20f%C3%BCr%20mein%20Unternehmen."
+              href="https://wa.me/4367762492999?text=Hallo%20Leon%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Website%20f%C3%BCr%20mein%20Unternehmen."
               target="_blank"
               rel="noopener noreferrer"
               class="contact__channel contact__channel--whatsapp"
@@ -43,7 +43,7 @@
             </a>
 
             <a
-              href="tel:+43XXXXXXXXX"
+              href="tel:+4367762492999"
               class="contact__channel"
               aria-label="Leon Rohrer anrufen"
             >
@@ -54,7 +54,7 @@
               </span>
               <span class="contact__channel-text">
                 <span class="contact__channel-label">Telefon</span>
-                <span class="contact__channel-value">+43 XXX XXXXXXX</span>
+                <span class="contact__channel-value">+43 677 6249 2999</span>
               </span>
               <svg class="contact__channel-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             </a>
@@ -177,6 +177,11 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
                 Vielen Dank! Ich melde mich so schnell wie möglich bei Ihnen.
               </p>
+
+              <p v-if="errorMsg" class="form-error" role="alert">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                {{ errorMsg }}
+              </p>
             </form>
           </div>
         </div>
@@ -189,19 +194,67 @@
 <script setup>
 import { ref, reactive } from 'vue'
 
+// ============================================================
+//  Formspree Endpoint
+//  → 1. Auf https://formspree.io registrieren (gratis, 50/Monat)
+//  → 2. Neues Formular anlegen, ID kopieren (z. B. "mzbpvwka")
+//  → 3. Hier unten die ID einsetzen:
+// ============================================================
+const FORMSPREE_ID = 'meendkdy'
+const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_ID}`
+
 const form = reactive({ name: '', company: '', contact: '', message: '' })
 const submitting = ref(false)
 const submitted = ref(false)
+const errorMsg = ref('')
 
 async function handleSubmit() {
   if (!form.name || !form.contact || !form.message) return
 
   submitting.value = true
-  // TODO: Hier Formspree / Netlify Forms / EmailJS einbinden.
-  await new Promise((r) => setTimeout(r, 800))
-  submitting.value = false
-  submitted.value = true
-  Object.assign(form, { name: '', company: '', contact: '', message: '' })
+  errorMsg.value = ''
+
+  // Falls die ID noch nicht eingetragen ist: nicht versenden, sondern hinweisen
+  if (FORMSPREE_ID === 'DEINE_ID') {
+    submitting.value = false
+    errorMsg.value =
+      'Formular noch nicht konfiguriert. Bitte WhatsApp, Telefon oder E-Mail nutzen.'
+    return
+  }
+
+  try {
+    const res = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: form.name,
+        company: form.company || '–',
+        contact: form.contact,
+        message: form.message,
+        _subject: `Neue Anfrage von ${form.name}${form.company ? ' (' + form.company + ')' : ''}`,
+        _replyto: form.contact,
+      }),
+    })
+
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}))
+      throw new Error(
+        data?.errors?.[0]?.message || 'Senden fehlgeschlagen. Bitte erneut versuchen.'
+      )
+    }
+
+    submitted.value = true
+    Object.assign(form, { name: '', company: '', contact: '', message: '' })
+  } catch (err) {
+    errorMsg.value =
+      err?.message ||
+      'Senden fehlgeschlagen. Bitte direkt per WhatsApp oder E-Mail melden.'
+  } finally {
+    submitting.value = false
+  }
 }
 </script>
 
@@ -406,6 +459,19 @@ async function handleSubmit() {
   padding: 0.85rem 1rem;
   font-size: 0.9rem;
   font-weight: 600;
+}
+
+.form-error {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: #FEE2E2;
+  color: #B91C1C;
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.45;
 }
 
 /* Poster-style contact surface */
